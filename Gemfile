@@ -43,6 +43,8 @@ gem 'tzinfo-data'
 
 gem 'tzinfo'
 
+gem 'devise', '~> 4.8', '>= 4.8.1'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
