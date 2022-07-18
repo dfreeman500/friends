@@ -59,12 +59,14 @@ note: ex: create link: <%=link_to 'Friend List', root_path, class:"navbar-brand"
 friends/app/controllers - def index end
 
 
-rails routes (shows all the routes in the app)
+note: rails routes (shows all the routes in the app)
 
 **CREATE DB:**
 * rails g scaffold friends first_name:string last_name:string email:string phone:string twitter:string (generates a scaffold/database table)
-* rails db:migrate (creates schema - creates db from migration
+* rails db:migrate (creates schema - creates db from migration)
 
+
+**Install Gems or Gem Devise** 
 * To install gem:add line to gem file
 * Terminal: bundle install
 
@@ -74,4 +76,13 @@ rails routes (shows all the routes in the app)
 * bundle install (installs items in gem file - much like requirements.txt in python)
 * rails generate devise:install (follow instructions -ex: copy items to file, 
 * rails g devise:views,
-* rails generate devise user(for db), rails db:migrate)
+* rails generate devise user (creates db for user authentication info), 
+* rails db:migrate  (creates schema - creates db from migration)
+
+https://github.com/heartcombo/devise
+https://rubygems.org/gems/devise
+
+**Add authentication links to app/views/home/_header.html.erb**
+		* add conditional depending on if signed in: <% if user_signed_in? %>
+
+* if sign out isn't working: change 'config/initializers/devise.rb' the line config.sign_out_via = :delete to config.sign_out_via = :get, but don't change the link_to ... method: :delete
