@@ -23,10 +23,13 @@ Things you may want to cover:
 
 * ...
 ---------------------------------------------------------
+---------------------------------------------------------
+---------------------------------------------------------
 
-Great Tutorial: https://www.youtube.com/watch?v=fmyvWz5TUWg
 
-Process to create this project:
+Great Tutorial by John Elder at https://www.youtube.com/watch?v=fmyvWz5TUWg
+
+**Process to create this project:**
 Install latest LTS version of Node.js
 Install Yarn
 Install Git-Bash
