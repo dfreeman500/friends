@@ -36,6 +36,14 @@
     <%= form.text_field :twitter, placeholder: "Twitter" %>
   </div>
 
+
+  <div>
+    <%= form.number_field :user_id, id: :friend_user_id, value:current_user.id, type: :hidden %>
+  </div>
+
+
+
+
   <div>
     <%= form.submit %>
   </div>

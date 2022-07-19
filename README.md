@@ -86,3 +86,69 @@ https://rubygems.org/gems/devise
 		* add conditional depending on if signed in: <% if user_signed_in? %>
 
 * if sign out isn't working: change 'config/initializers/devise.rb' the line config.sign_out_via = :delete to config.sign_out_via = :get, but don't change the link_to ... method: :delete
+
+**Rails associations**
+**Associate a user table with a specific friends list**
+https://guides.rubyonrails.org/association_basics.html
+
+	*In app/models/friend.rb add:
+		belongs_to :user
+		inside class Friend
+
+	*In app/models/user.rb add:
+		has_many :friends
+		to class User
+
+	*In Bash type: rails generate migration add_user_id_to_friends user_id:integer:index (this creates the relationship between friends and user)
+
+	*rails db:migrate
+
+	* Add a hidden field to the new friend page to associate that friend with the current user upon creation:
+
+	<%= form.number_field :user_id, id: :friend_user_id, value:current_user.id, type: :hidden %>
+
+	* Must also update app/controllers/friends_controller.rb in put parameter to now accept user_id on the creation of a new friend. Change
+	 def friend_params  
+	 	params.require(:friend).permit(:first_name, :last_name, :email, :phone, :twitter)
+	 to
+      params.require(:friend).permit(:first_name, :last_name, :email, :phone, :twitter, :user_id)
+
+
+     *In app/controllers/friends_controller.rb add:
+     	before_action :authenticate_user!, except: [:index, :show]
+     	before_action runs before any other methods in the controller. 
+     	This code means that if a user is not authenticated -- don't allow anything except to see the index page and show page. 
+
+     *In app/controllers/friends_controller.rb add:
+       before_action :correct_user, only: [:edit, :update, :destroy]
+       		(make sure it is the correct user only for edit, update, destroy)
+
+       and add def correct_user
+
+        def correct_user
+	    	@friend = current_user.friends.find_by(id: params[:id])
+	    	redirect_to friends_path, notice: "Not Authorized to Edit This Friend" if @friend.nil?
+	  	end
+	  		(i.e. the correct_user is the current_user who's been associated with the id. If the correct_user is not correct -- send error message)
+
+
+	  	and change def new line
+
+	  	def new
+    		# @friend = Friend.new
+    		@friend = current_user.friends.build
+    	end
+    		(don't want Friend.new we want the current user to be associated)
+
+		and change def create line
+		
+		def create
+		    # @friend = Friend.new(friend_params)
+		    @friend = current_user.friends.build(friend_params)
+
+		*The above association code makes it so everyone can see all of the friends, but only the authorized user can edit/delete the associated friends. 
+
+		If want to only show associated friends  add
+			<% if friend.user == current_user %>
+			<% end %> 
+			to app/view/friends/index.html.erb
