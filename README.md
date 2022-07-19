@@ -152,3 +152,5 @@ https://guides.rubyonrails.org/association_basics.html
 			<% if friend.user == current_user %>
 			<% end %> 
 			to app/view/friends/index.html.erb
+
+
