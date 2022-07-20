@@ -6,8 +6,8 @@ For this app I mostly followed a great tutorial by John Elder at https://www.you
 
 #
 
-
-<img src="images/friend.png" width="900" >
+Click to enlarge
+<img src="images/friend.png" width="1000" >
 
 
 
