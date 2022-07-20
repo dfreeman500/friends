@@ -4,20 +4,14 @@ Hosted on: https://the-friend-list.herokuapp.com/
 
 For this app I mostly followed a great tutorial by John Elder at https://www.youtube.com/watch?v=fmyvWz5TUWg. The initial focus is on installing the Ruby environment and then setting up a Ruby on Rails MVC app that uses a database. The tutorial goes into the MVC components and shows how they are used in Ruby on Rails as well as different databases (ex: sqlite for development, postgresql for production). Devise is used for authentication so that each user can have access to only the associated friends list. 
 
----------------------------------------------------------------------------------------------------------------------------------------------
+#
+
+
+<img src="images/friends.png" width="400" >
 
 
 
-
-
-
-
-
-
-
-
-
-----------------------------------------------------------------------------------------------------------------------------------------------
+#
 
 **Process to create this project:**
 * Install latest LTS version of Node.js
@@ -161,15 +155,6 @@ https://guides.rubyonrails.org/association_basics.html
 	Access the variable in the About view --> <p> <%= @answer %> </p>
 
 **Setting up Heroku Hosting**
-	*Sign up for a Heroku account
-	   https://devcenter.heroku.com/articles/github-integration
-	*Download and install Heroku toolbelt - allows terminal to connect to heroku
-	 	https://devcenter.heroku.com/articles/heroku-cli
- 	*restart bash terminal
- 	*In terminal
- 		heroku --version
- 		heroku login -i (then login on website - user credentials will show in bash)
-
  	*in Gemfile move: gem "sqlite3", "~> 1.4" to group :development do
  	*in Gemfile add:
  		*group :production do
@@ -177,3 +162,9 @@ https://guides.rubyonrails.org/association_basics.html
  		*end
 
  	*bundle install --without production
+
+	*Sign up for a Heroku account
+	* Integrate github with heroku
+		* https://devcenter.heroku.com/articles/github-integration
+	* Create Procfile (this automatically creates migration with each deployment) and add line:
+		* release: rake db:migrate
