@@ -3,5 +3,6 @@ class HomeController < ApplicationController
   end
 
   def about
+    @answer = 2
   end
 end

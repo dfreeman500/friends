@@ -1,5 +1,8 @@
 <!-- <p style="color: green"><%= notice %></p>
  -->
+
+<% if user_signed_in? %>
+
 <h1>Friend List</h1>
 <%= link_to "Add New Friend", new_friend_path, class:"btn btn-secondary" %>
 
@@ -10,13 +13,10 @@
   <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
-      <th>First Name</th>
-      <th> Last Name</th>
+      <th> Name</th>
       <th>Email</th>
       <th>Phone</th>
       <th>Twitter</th>
-      <th>User Id</th>
-      <th> </th>
       <th></th>
     </tr>
   </thead>
@@ -24,13 +24,13 @@
       <% @friends.each do |friend| %>
         <% if friend.user == current_user %>
         <tr>
-          <td><%= friend.first_name %></td>
-          <td><%= friend.last_name %></td>
+          <td><%= link_to friend.first_name + " " + friend.last_name , friend %></td>
           <td><%= friend.email %></td>
           <td><%= friend.phone %></td>
           <td><%= friend.twitter %></td>
-          <td><%= friend.user_id %></td>
-          <td><%= link_to "Show", friend, class:"btn btn-secondary" %> </td>
+<!--           <td><%= friend.user_id %></td>
+ --><!--      <td><%= link_to "Show", friend, class:"btn btn-secondary" %> </td>
+ -->          
           <td><%= link_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
           
         </tr>
@@ -57,3 +57,9 @@
   <% end %>
 </div>
  -->
+
+<% else %>
+<h1>Welcome to Friend List</h1>
+<p>Sign in to start using the app!</p>
+
+<% end %>

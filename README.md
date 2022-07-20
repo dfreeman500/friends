@@ -1,33 +1,11 @@
-# README
+# Friends List - Ruby On Rails MVC CRUD app with authentication utilizing SQLite3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
----------------------------------------------------------
----------------------------------------------------------
----------------------------------------------------------
+For this app I mostly followed a great tutorial by John Elder at https://www.youtube.com/watch?v=fmyvWz5TUWg. The focus is on installing the Ruby environment and then setting up a Ruby on Rails MVC app that uses SQLite3 as a database. The tutorial goes into the MVC components and shows how they are used in Ruby on Rails as well as different databases (ex: sqlite for development, postgresql for production). Devise is used for authentication so that each user can have access to only the associated friends list. 
 
 
-Great Tutorial by John Elder at https://www.youtube.com/watch?v=fmyvWz5TUWg
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
 
 **Process to create this project:**
 * Install latest LTS version of Node.js
@@ -153,4 +131,19 @@ https://guides.rubyonrails.org/association_basics.html
 			<% end %> 
 			to app/view/friends/index.html.erb
 
+**Change friends page to the home page**
+	* To change friends page to home page in friends/config/routes.rb
+		change   root 'home#index'  to  root 'friends#index'
+	* Create <% if user_signed_in? %> <% else %> <% end %> in app/views/friends/index.html.erb
 
+	*Notes: when pulling from the database, you are dealing with @friends the whole db (ex: have to loop through on index page. ). On edit page we are pulling just one friend but labeling it @friend 
+
+**Note on Controllers**
+	def about
+		@about_me = "My name is d"  
+		@answer = 2+2
+	end
+
+	Anything you want to pass into the view (api from another website, get request, instance variable) can be done through the controller. The instance variable @about_me will be accessible to the view. Instance variables have @ in front (@about_me) whereas (about_me) is just a local variable
+
+	Access the variable in the About view --> <p> <%= @answer %> </p>
