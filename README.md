@@ -7,7 +7,7 @@ For this app I mostly followed a great tutorial by John Elder at https://www.you
 #
 
 
-<img src="images/friends.png" width="400" >
+<img src="images/friend.png" width="400" >
 
 
 
