@@ -3,6 +3,7 @@
 ### Hosted on: https://the-friend-list.herokuapp.com/
 
 
+#
 
 For this app I mostly followed a great tutorial by John Elder at https://www.youtube.com/watch?v=fmyvWz5TUWg. The initial focus is on installing the Ruby environment and then setting up a Ruby on Rails MVC app that uses a database. The tutorial goes into the MVC components and shows how they are used in Ruby on Rails as well as different databases (ex: sqlite for development, postgresql for production). Devise is used for authentication so that each user can have access to only the associated friends list. 
 
